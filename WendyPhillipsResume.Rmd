@@ -1,0 +1,132 @@
+---
+title: "Résumé"
+author: "Wendy Phillips"
+date: "8/12/2023"
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    keep_tex: true
+    dev: cairo_pdf
+    template: svm-latex-resume.tex
+fontawesome: FALSE
+linestretch: TRUE
+colorlinks: TRUE
+# How can we get a hold of you?
+email: wendyphillips@gmail.com
+phone: "541-230-8048"
+location: "Golden Valley, MN"
+github: wendysphillips
+linkedin: "wendyphillipsphd"
+geometry: "top=.75in, left =.75in, right=.75in, bottom=.75in"
+mainfont: Proxima Nova
+sansfont: Proxima Nova
+monofont: Proxima Nova # I want to use this, but seems to choke on @
+urlcolor: CadetBlue
+fontsize: 11pt
+summary: "Here is a summary"
+
+includephoto: FALSE
+myphoto: rick-martel-crop.jpg
+# shift: "7in,-.25in" # this is default
+photobigness: 1.75cm
+# photozoom: ".2\textwidth" # this is default
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+library(ggplot2)
+```
+
+<!-- Read more about Pandoc's [fenced_divs](https://pandoc.org/MANUAL.html#extension-fenced_divs) syntax -->
+
+:::::: {.columns}
+::: {.column width="57%" data-latex="{0.57\textwidth}"}
+
+# EXPERIENCE
+
+## \textcolor{MidnightBlue}{Senior Bioinformatician}
+\vspace{-0.75em}
+2020 - present, Diversigen, New Brighton, MN  
+
+- Author R package of data manipulation, visualization, and statisical functions routinely used by team members
+- Maintain R package on github, incorporating team member suggestions
+- Produce over 20 written reports containing statistical analyses and data visualization
+
+## \textcolor{MidnightBlue}{Research Scientist}
+\vspace{-0.75em}
+2018 - 2020, Elanco, Greenfield, IN 
+
+- Perform statistical analyses and create data visualizations
+- Present findings to internal teams, customizing for audience backgrounds
+- Taught team members basic analytic and visualization methods
+
+
+## \textcolor{MidnightBlue}{Business Owner}
+\vspace{-0.75em}
+2016 - 2018, Wendy Phillips Photography, Corvallis, OR
+
+- Founded and managed self-owned photography business
+
+
+## \textcolor{MidnightBlue}{Research Associate}
+\vspace{-0.75em}
+2013 - 2016, U.S. Dept. of Agriculture,  Corvallis, OR  
+
+- Statistical analysis
+
+
+## ACTIVITY OVER TIME
+```{r, echo=FALSE, message = FALSE}
+library(tidyverse)
+library(RColorBrewer)
+act <- read.csv("/Users/wendyphillips/Documents/Computing/R_work/data/Activities.csv")
+act <- act[,1:9]
+act_long <- act |> pivot_longer(cols = 2:9)
+act_long <- act_long |> rename(Activity = name)
+
+pal <- brewer.pal(8,"Dark2")
+
+ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
+  geom_area(stat= 'identity', position = "stack") +
+  theme_classic(base_size = 14) +
+  scale_y_continuous(expand = c(0,0))+
+  scale_x_continuous(expand = c(0,0)) +
+  labs(y = "Percent of working time") +
+  theme(legend.position = "top") +
+  scale_fill_brewer(type = "qual",palette =  "Dark2")
+```
+
+:::
+::: {.column width="5%" data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty div with an empty character to serve as a column sep -->
+:::
+:::::: {.column width="38%" data-latex="{0.38\textwidth}"}
+
+# SKILLS
+```{r fig-two-together,  message=FALSE, echo=FALSE}
+library(wordcloud) 
+comp_skills <- read.csv("/Users/wendyphillips/Documents/Computing/R_work/data/computing_skills.csv")
+pal <- brewer.pal(6,"Dark2")
+pal <- pal[-(1)]
+set.seed(997)
+wordcloud(comp_skills$word, comp_skills$freq, scale=c(4,.5),min.freq=2,max.words=Inf,
+          random.order=TRUE, random.color=TRUE, rot.per=.15,
+          colors=pal)
+```
+
+
+
+
+# EDUCATION
+Ph.D. Environmental Sciences  
+Oregon State University  
+\    
+B.A. Biological Sciences  
+The University of Chicago  
+ 
+
+
+
+:::
+::::::
+
