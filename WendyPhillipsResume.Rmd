@@ -11,25 +11,16 @@ output:
 fontawesome: FALSE
 linestretch: TRUE
 colorlinks: TRUE
-# How can we get a hold of you?
-email: wendyphillips@gmail.com
-phone: "541-230-8048"
-location: "Golden Valley, MN"
-github: wendysphillips
-linkedin: "wendyphillipsphd"
+
 geometry: "top=.75in, left =.75in, right=.75in, bottom=.75in"
 mainfont: Proxima Nova
 sansfont: Proxima Nova
-monofont: Proxima Nova # I want to use this, but seems to choke on @
+monofont: Proxima Nova 
 urlcolor: CadetBlue
 fontsize: 11pt
-summary: "Here is a summary"
+summary: "Curiosity driven to uncover the hidden gems in data. Passionate about communicating findings to others in audience-appropriate manner."
 
 includephoto: FALSE
-myphoto: rick-martel-crop.jpg
-# shift: "7in,-.25in" # this is default
-photobigness: 1.75cm
-# photozoom: ".2\textwidth" # this is default
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
@@ -72,16 +63,18 @@ library(ggplot2)
 2013 - 2016, U.S. Dept. of Agriculture,  Corvallis, OR  
 
 - Statistical analysis
+- Another
+- Another
 
 ## **ACTIVITY OVER TIME**
 ```{r, echo=FALSE, message = FALSE}
 library(tidyverse)
 library(RColorBrewer)
-act <- read.csv("/Users/wendyphillips/Documents/Computing/R_work/data/Activities.csv")
-act <- act[,1:9]
-act_long <- act |> pivot_longer(cols = 2:9)
+act <- read.csv("/Users/wendyphillips/Documents/Computing/R_work/data/Activities.csv", check.names = FALSE)
+act <- act[,1:8]
+act_long <- act |> pivot_longer(cols = 2:8)
 act_long <- act_long |> rename(Activity = name)
-
+act_long$Activity <- factor(act_long$Activity, level = c("Data_analysis", "Research", "Writing" ,"Presenting", "Learning", "Teaching", "Other"))
 pal <- brewer.pal(8,"Dark2")
 
 ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
@@ -103,6 +96,16 @@ ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
 :::
 :::::: {.column width="38%" data-latex="{0.38\textwidth}"}
 
+# CONTACT INFORMATION
+
+wendyphillips@gmail.com  
+541-230-8048  
+Golden Valley, MN
+
+# WEB LINKS
+[LinkedIn](https://https://www.linkedin.com/in/wendyphillipsphd/)  
+[GitHub](https://github.com/wendysphillips)  
+
 # SKILLS
 ```{r fig-two-together,  message=FALSE, echo=FALSE}
 library(wordcloud) 
@@ -111,10 +114,29 @@ pal <- brewer.pal(6,"Dark2")
 pal <- pal[-(1)]
 set.seed(997)
 wordcloud(comp_skills$word, comp_skills$freq, scale=c(4,.5),min.freq=2,max.words=Inf,
-          random.order=TRUE, random.color=TRUE, rot.per=.15,
+          random.order=TRUE, random.color=TRUE, rot.per=.15, fixed.asp = TRUE,
           colors=pal)
 ```
 
+```{r,  message=FALSE, echo=FALSE}
+library(treemap) 
+skills <- read.csv("skills.csv")
+treemap(skills, index=c("Group","Subgroup"), vSize="value", type="index",
+        fontsize.labels=c(10,8),                # size of labels. Give the size per level of aggregation: size for group, size for subgroup, sub-subgroups...
+        fontcolor.labels=c("white","orange"),    # Color of labels
+        fontface.labels=c(2,1),                  # Font of labels: 1,2,3,4 for normal, bold, italic, bold-italic...
+        bg.labels=c("transparent"),              # Background color of labels
+        align.labels=list(
+          c("center", "center"), 
+          c("center", "center")
+        ),                                   # Where to place labels in the rectangle?
+        overlap.labels=1,                      # number between 0 and 1 that determines the tolerance of the overlap between labels. 0 means that labels of lower levels are not printed if higher level labels overlap, 1  means that labels are always printed. In-between values, for instance the default value .5, means that lower level labels are printed if other labels do not overlap with more than .5  times their area size.
+        inflate.labels=T,                        # If true, labels are bigger when rectangle is bigger.
+        aspRatio = 1.5,
+        lowerbound.cex.labels=0,
+        palette="-RdGy"
+)
+```
 
 
 
