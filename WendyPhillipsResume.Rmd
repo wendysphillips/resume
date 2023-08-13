@@ -57,34 +57,34 @@ ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
 ```
 
 
-## \textcolor{MidnightBlue}{Senior Bioinformatician}
+## \textcolor{BlueViolet}{Senior Bioinformatician}
 \vspace{-0.75em}
-*2020 - present*, Diversigen, New Brighton, MN  
+2020 - present, *Diversigen*, New Brighton, MN  
 
 - Author R package of data manipulation, visualization, and statisical functions routinely used by team members
 - Maintain R package on github, incorporating team member suggestions
 - Produce over 20 written reports containing statistical analyses and data visualization
 
 \vspace{-1.em}
-## \textcolor{MidnightBlue}{Research Scientist}
+## \textcolor{BlueViolet}{Research Scientist}
 \vspace{-0.75em}
-*2018 - 2020*, Elanco, Greenfield, IN 
+2018 - 2020, *Elanco*, Greenfield, IN 
 
 - Perform statistical analyses and create data visualizations
 - Present findings to internal teams, customizing for audience backgrounds
 - Taught team members basic analytic and visualization methods
 
 \vspace{-1.em}
-## \textcolor{MidnightBlue}{Business Owner}
+## \textcolor{BlueViolet}{Business Owner}
 \vspace{-0.75em}
-*2016 - 2018*, Wendy Phillips Photography, Corvallis, OR
+2016 - 2018, *Wendy Phillips Photography*, Corvallis, OR
 
 - Founded and managed self-owned photography business
 
 \vspace{-1.em}
-## \textcolor{MidnightBlue}{Research Associate}
+## \textcolor{BlueViolet}{Research Associate}
 \vspace{-0.75em}
-*2013 - 2016*, U.S. Dept. of Agriculture,  Corvallis, OR  
+2013 - 2016, *U.S. Dept. of Agriculture*,  Corvallis, OR  
 
 - Statistical analysis
 - Another
