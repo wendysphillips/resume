@@ -18,7 +18,7 @@ sansfont: Proxima Nova
 monofont: Proxima Nova 
 urlcolor: CadetBlue
 fontsize: 11pt
-summary: "Curiosity driven to uncover the hidden gems in data. Passionate about communicating findings to others in audience-appropriate manner."
+summary: "Driven by intense curiosity to uncover the hidden gems in data. Highly experienced in data analytics. Passionate about communicating results in an audience-appropriate manner."  
 
 includephoto: FALSE
 ---
@@ -33,40 +33,8 @@ library(ggplot2)
 ::: {.column width="57%" data-latex="{0.57\textwidth}"}
 
 # EXPERIENCE
-
-## \textcolor{MidnightBlue}{Senior Bioinformatician}
-\vspace{-0.75em}
-2020 - present, Diversigen, New Brighton, MN  
-
-- Author R package of data manipulation, visualization, and statisical functions routinely used by team members
-- Maintain R package on github, incorporating team member suggestions
-- Produce over 20 written reports containing statistical analyses and data visualization
-
-## \textcolor{MidnightBlue}{Research Scientist}
-\vspace{-0.75em}
-2018 - 2020, Elanco, Greenfield, IN 
-
-- Perform statistical analyses and create data visualizations
-- Present findings to internal teams, customizing for audience backgrounds
-- Taught team members basic analytic and visualization methods
-
-
-## \textcolor{MidnightBlue}{Business Owner}
-\vspace{-0.75em}
-2016 - 2018, Wendy Phillips Photography, Corvallis, OR
-
-- Founded and managed self-owned photography business
-
-
-## \textcolor{MidnightBlue}{Research Associate}
-\vspace{-0.75em}
-2013 - 2016, U.S. Dept. of Agriculture,  Corvallis, OR  
-
-- Statistical analysis
-- Another
-- Another
-
-## **ACTIVITY OVER TIME**
+\vspace{0em}
+## **WORK ACTIVITY HISTORY**
 ```{r, echo=FALSE, message = FALSE}
 library(tidyverse)
 library(RColorBrewer)
@@ -89,6 +57,38 @@ ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
 ```
 
 
+## \textcolor{MidnightBlue}{Senior Bioinformatician}
+\vspace{-0.75em}
+*2020 - present*, Diversigen, New Brighton, MN  
+
+- Author R package of data manipulation, visualization, and statisical functions routinely used by team members
+- Maintain R package on github, incorporating team member suggestions
+- Produce over 20 written reports containing statistical analyses and data visualization
+
+\vspace{-1.em}
+## \textcolor{MidnightBlue}{Research Scientist}
+\vspace{-0.75em}
+*2018 - 2020*, Elanco, Greenfield, IN 
+
+- Perform statistical analyses and create data visualizations
+- Present findings to internal teams, customizing for audience backgrounds
+- Taught team members basic analytic and visualization methods
+
+\vspace{-1.em}
+## \textcolor{MidnightBlue}{Business Owner}
+\vspace{-0.75em}
+*2016 - 2018*, Wendy Phillips Photography, Corvallis, OR
+
+- Founded and managed self-owned photography business
+
+\vspace{-1.em}
+## \textcolor{MidnightBlue}{Research Associate}
+\vspace{-0.75em}
+*2013 - 2016*, U.S. Dept. of Agriculture,  Corvallis, OR  
+
+- Statistical analysis
+- Another
+
 :::
 ::: {.column width="5%" data-latex="{0.05\textwidth}"}
 \ 
@@ -97,55 +97,62 @@ ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
 :::::: {.column width="38%" data-latex="{0.38\textwidth}"}
 
 # CONTACT INFORMATION
-
+\vspace{-0.5em}
 wendyphillips@gmail.com  
 541-230-8048  
-Golden Valley, MN
+Golden Valley, MN  
 
-# WEB LINKS
+\vspace{-0.75em}
+# LINKS
+\vspace{-0.5em}
 [LinkedIn](https://https://www.linkedin.com/in/wendyphillipsphd/)  
 [GitHub](https://github.com/wendysphillips)  
 
-# SKILLS
-```{r fig-two-together,  message=FALSE, echo=FALSE}
+\vspace{-0.75em}
+# EDUCATION
+\vspace{-0.5em}
+**Ph.D.** Environmental Sciences  
+Oregon State University, 2012   
+
+**B.A.** Biological Sciences  
+The University of Chicago, 1992 
+
+\vspace{-0.75em}
+# CERTIFICATIONS
+\vspace{-0.5em}
+[Professional Data Scientist](https://www.datacamp.com/certificate/DS0027755206453)      
+DataCamp, 2023
+
+\vspace{-0.75em}
+# DATA SKILLS
+
+```{r fig-two-together,  message=FALSE, echo=FALSE, fig.align="center"}
 library(wordcloud) 
 comp_skills <- read.csv("/Users/wendyphillips/Documents/Computing/R_work/data/computing_skills.csv")
-pal <- brewer.pal(6,"Dark2")
-pal <- pal[-(1)]
-set.seed(997)
-wordcloud(comp_skills$word, comp_skills$freq, scale=c(4,.5),min.freq=2,max.words=Inf,
-          random.order=TRUE, random.color=TRUE, rot.per=.15, fixed.asp = TRUE,
-          colors=pal)
-```
-
-```{r,  message=FALSE, echo=FALSE}
-library(treemap) 
-skills <- read.csv("skills.csv")
-treemap(skills, index=c("Group","Subgroup"), vSize="value", type="index",
-        fontsize.labels=c(10,8),                # size of labels. Give the size per level of aggregation: size for group, size for subgroup, sub-subgroups...
-        fontcolor.labels=c("white","orange"),    # Color of labels
-        fontface.labels=c(2,1),                  # Font of labels: 1,2,3,4 for normal, bold, italic, bold-italic...
-        bg.labels=c("transparent"),              # Background color of labels
-        align.labels=list(
-          c("center", "center"), 
-          c("center", "center")
-        ),                                   # Where to place labels in the rectangle?
-        overlap.labels=1,                      # number between 0 and 1 that determines the tolerance of the overlap between labels. 0 means that labels of lower levels are not printed if higher level labels overlap, 1  means that labels are always printed. In-between values, for instance the default value .5, means that lower level labels are printed if other labels do not overlap with more than .5  times their area size.
-        inflate.labels=T,                        # If true, labels are bigger when rectangle is bigger.
-        aspRatio = 1.5,
-        lowerbound.cex.labels=0,
-        palette="-RdGy"
-)
+pal <- rev(brewer.pal(8,"Dark2"))
+# pal <- pal[-(1)]
+set.seed(9999)
+wordcloud(comp_skills$word, comp_skills$freq, scale=c(4,.5),min.freq=2,max.words=Inf,random.order=TRUE, random.color=TRUE, rot.per=0, colors=pal)
 ```
 
 
+# VALUE ADD
+```{r, echo = FALSE, warning=FALSE, fig.height=1.3}
 
-# EDUCATION
-Ph.D. Environmental Sciences  
-Oregon State University  
-\    
-B.A. Biological Sciences  
-The University of Chicago  
+wendys_value <- data.frame(cat = c("apple now", "apple with wendy"), vals = c(10,11))
+wendys_value$cat <- factor(wendys_value$cat, levels =c("apple with wendy", "apple now"))
+ggplot(wendys_value, aes(x=vals, y = cat, group = cat)) +
+  geom_bar(stat='identity', width=0.75,aes(fill = cat)) +
+  theme_classic(base_size = 16) +
+  scale_x_continuous(limits = c(0,11), breaks = c(0,5,10), expand = c(0,0)) +
+  labs(y="", x = "Score") +
+  theme(legend.position = "none",
+        axis.text.y = element_text(color = "#3591aa", size = 14, face = "bold")) +
+  scale_fill_manual(values = c( "#D4AF37", "#C0C0C0")) +
+  theme(axis.ticks.y = element_blank())
+  
+```
+
  
 
 
