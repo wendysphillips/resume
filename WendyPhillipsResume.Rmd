@@ -18,7 +18,7 @@ sansfont: Proxima Nova
 monofont: Proxima Nova 
 urlcolor: CadetBlue
 fontsize: 11pt
-summary: "Driven by curiosity to uncover the hidden gems in data, with out of the box thinking that solves problems. My insight into others' needs drives my clear, impactful communication of results."  
+summary: "Propelled by curiosity to uncover hidden gems in data, with out-of-the-box thinking that solves problems. My insight into others' needs drives my clear, impactful communication of results."  
 
 includephoto: FALSE
 ---
@@ -37,20 +37,21 @@ library(RColorBrewer)
 ```{r, echo=FALSE, message = FALSE}
 # Read in and subset data
 act <- read.csv("data/Activities.csv", check.names = FALSE)
-act <- act[, 1:8]
+act <- act[, 1:9]
 
 # Transform to long format for plotting
-act_long <- act |> pivot_longer(cols = 2:8)
+act_long <- act |> pivot_longer(cols = 2:9)
 act_long <- act_long |> rename(Activity = name)
 
 # Change underscore to space
 act_long$Activity <- gsub("Analyze_data", "Analyze data", act_long$Activity)
 
 # Factor activities by desired plotting order
-act_long$Activity <- factor(act_long$Activity, level = c("Analyze data", "Research", "Write", "Present", "Learn", "Teach", "Create"))
+act_long$Activity <- factor(act_long$Activity, level = c("Analyze data", "Research", "Write", "Present", "Learn", "Teach", "Create", "Other"))
 
 # pal <- c(brewer.pal(6,"Dark2"), "#573db3")
-
+wp_cols <- c( "#0054bd", "#ff9b62", "#524685", "#ffc680", "#3b907b","#019af1","#755ad6", "#89909e", "#85c25b","#cb002f")
+#wp_cols <- c("#3a6ce3", "#6dd5db", "#783fcf", "#e399ff", "#005995", "#bec3dc", "#3b907b", "#89909e", "#e08f71")
 ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
   geom_area(stat = "identity", position = "stack") +
   theme_classic(base_size = 14) +
@@ -58,7 +59,8 @@ ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
   scale_x_continuous(expand = c(0, 0), breaks = c(2000, 2005, 2010, 2015, 2020)) +
   labs(y = "Percent of working time") +
   theme(legend.position = "top") +
-  scale_fill_brewer(type = "qual", palette = "Dark2")
+  scale_fill_manual(values = wp_cols)
+  # scale_fill_brewer(type = "qual", palette = "Dark2")
 ```
 
 
@@ -68,10 +70,10 @@ ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
 
 \small
 \vspace{-0.65em}
-- Collaborate with internal and external teams to understand goals, execute data analysis, return figures & statistical results
-- Create R package of visualization and statistical functions used by team members, incorporate feedback, maintain on github
-- Produce over 20 written reports containing statistical analyses & data visualization
+- Engage with internal and external teams to understand project goals, execute analyses, return figures and statistical results, producing and presenting over 20 reports
+- Create R package of visualization and statistical functions used by team members, incorporate feedback, maintain on GitHub
 - Spearhead analysis of multi-faceted internal research project, present findings at national conference
+- Collaborate with team to perform and receive reviews of code and reports, address and incorporate feedback
 
 \vspace{-1.5em}
 ## \textcolor{BlueViolet}{Research Scientist}
@@ -80,7 +82,7 @@ ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
 
 \vspace{-0.65em}
 - Performed quality control, exploratory & statistical analysis on research data, produced summary visualizations, wrote reports
-- Presented findings to internal teams & at external conferences, customizing information for audience backgrounds
+- Presented findings to internal teams and at external conferences, customizing information for audience backgrounds
 - Taught team members basic analytic and visualization methods
 
 \vspace{-1.5em}
@@ -97,7 +99,7 @@ ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
 2013 - 2016, *U.S. Dept. of Agriculture*,  Corvallis, OR  
 
 \vspace{-0.65em}
-- Managed five concurrent research projects, performed both research and data analytics, yielding five scientific publications
+- Managed five concurrent research projects, performed research and data analyses, yielding five scientific publications
 
 :::
 ::: {.column width="5%" data-latex="{0.05\textwidth}"}
@@ -141,19 +143,19 @@ library(wordcloud)
 comp_skills <- read.csv("data/computing_skills.csv")
 pal <- brewer.pal(8, "Dark2")
 # pal <- pal[-(1)]
-set.seed(997)
+set.seed(99)
 # wp_cols <- c("#9d0079","#92c4ff",  "#ff64b9",  "#5677ff",  "#7c8900",  "#02b1f9",  "#fdb78b",  "#59488a")
-wordcloud(comp_skills$word, comp_skills$freq, scale = c(4, .5), min.freq = 2, max.words = Inf, random.order = TRUE, random.color = TRUE, rot.per = 0, colors = pal)
+wordcloud(comp_skills$word, comp_skills$freq, scale = c(4, .5), min.freq = 2, max.words = Inf, random.order = TRUE, random.color = TRUE, rot.per = 0, colors = wp_cols)
 ```
 
 
 # VALUE ADD
 ```{r, echo = FALSE, warning=FALSE, fig.height=1.3}
 # Create dataframe
-wendys_value <- data.frame(cat = c("apple now", "apple with wendy"), vals = c(10, 11))
+wendys_value <- data.frame(cat = c("Apple now", "Apple with Wendy"), vals = c(10, 11))
 
 # Factor categories to control plotting order
-wendys_value$cat <- factor(wendys_value$cat, levels = c("apple with wendy", "apple now"))
+wendys_value$cat <- factor(wendys_value$cat, levels = c("Apple with Wendy", "Apple now"))
 
 ggplot(wendys_value, aes(x = vals, y = cat, group = cat)) +
   geom_bar(stat = "identity", width = 0.75, aes(fill = cat)) +
