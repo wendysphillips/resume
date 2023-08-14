@@ -374,16 +374,16 @@ $endif$
   \shortmonthname[\THEMONTH]. \THEDAY, \THEYEAR}
 
 % Fancyhdr, as I tend to do with these personal documents.
-\usepackage{fancyhdr,lastpage}
+\usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0.0pt}
 \renewcommand{\footrulewidth}{0.0pt}
 \lhead{}
 \chead{}
 \rhead{}
-\lfoot{
-\cfoot{\scriptsize  $author-meta$ - $title$ - \emph{Updated:} \apstylekinda\today }}
-\rfoot{\scriptsize \thepage/{\hypersetup{linkcolor=black}\pageref{LastPage}}}
+\lfoot{}
+\fancyfoot[C]{\href{https://github.com/wendysphillips/resume}{Resume written in R Markdown} }
+\rfoot{}
 
 
 
@@ -422,22 +422,13 @@ $endif$ % includephoto
 %\end{wrapfigure}
 
 \centering{\Huge \bfseries $author$}
-
-\centering{\normalsize
-
-$if(email)$$email$ \hspace{25 mm}$endif$
-$if(phone)$$phone$ \hspace{25 mm}$endif$
-$if(location)$$location$ \hspace{25 mm}$endif$
-}
-\vspace{-1em}
-\centering{\normalsize
-$if(linkedin)$$if(fontawesome)$\faLinkedin \hspace{1 mm}$else$\textbf{LinkedIn:}$endif$ \href{https://www.linkedin.com/in/$linkedin$}{\tt $linkedin$} \hspace{25 mm}$endif$
-$if(github)$$if(fontawesome)$\faGithub \hspace{1 mm}$else$\textbf{Github:}$endif$ \href{http://github.com/$github$}{\tt $github$} \hspace{1 mm}$endif$
-}
-\vspace{2em}
+\vspace{1em}
 \flushleft{\large
 $if(summary)$\textit{$summary$} \hspace{1 mm}$endif$
 }
+
+\vspace{0.5em}
+
 $body$
 
 \end{document}

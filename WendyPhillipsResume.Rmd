@@ -18,16 +18,15 @@ sansfont: Proxima Nova
 monofont: Proxima Nova 
 urlcolor: CadetBlue
 fontsize: 11pt
-summary: "Driven by intense curiosity to uncover the hidden gems in data. Highly experienced in data analytics. Passionate about communicating results in an audience-appropriate manner."  
+summary: "Driven by curiosity to uncover the hidden gems in data, with out of the box thinking that solves problems. My insight into others' needs drives my clear, impactful communication of results."  
 
 includephoto: FALSE
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
-library(ggplot2)
+library(tidyverse)
+library(RColorBrewer)
 ```
-
-<!-- Read more about Pandoc's [fenced_divs](https://pandoc.org/MANUAL.html#extension-fenced_divs) syntax -->
 
 :::::: {.columns}
 ::: {.column width="57%" data-latex="{0.57\textwidth}"}
@@ -36,24 +35,30 @@ library(ggplot2)
 \vspace{0em}
 ## **WORK ACTIVITY HISTORY**
 ```{r, echo=FALSE, message = FALSE}
-library(tidyverse)
-library(RColorBrewer)
-act <- read.csv("/Users/wendyphillips/Documents/Computing/R_work/data/Activities.csv", check.names = FALSE)
-act <- act[,1:8]
+# Read in and subset data
+act <- read.csv("data/Activities.csv", check.names = FALSE)
+act <- act[, 1:8]
+
+# Transform to long format for plotting
 act_long <- act |> pivot_longer(cols = 2:8)
 act_long <- act_long |> rename(Activity = name)
-act_long$Activity <- factor(act_long$Activity, level = c("Data_analysis", "Research", "Writing" ,"Presenting", "Learning", "Teaching", "Other"))
-pal <- brewer.pal(8,"Dark2")
+
+# Change underscore to space
+act_long$Activity <- gsub("Analyze_data", "Analyze data", act_long$Activity)
+
+# Factor activities by desired plotting order
+act_long$Activity <- factor(act_long$Activity, level = c("Analyze data", "Research", "Write", "Present", "Learn", "Teach", "Create"))
+
+# pal <- c(brewer.pal(6,"Dark2"), "#573db3")
 
 ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
-  geom_area(stat= 'identity', position = "stack") +
+  geom_area(stat = "identity", position = "stack") +
   theme_classic(base_size = 14) +
-  scale_y_continuous(expand = c(0,0))+
-  scale_x_continuous(expand = c(0,0), breaks = c(2000,2005,2010,2015,2020)) +
+  scale_y_continuous(expand = c(0, 0)) +
+  scale_x_continuous(expand = c(0, 0), breaks = c(2000, 2005, 2010, 2015, 2020)) +
   labs(y = "Percent of working time") +
   theme(legend.position = "top") +
-  scale_fill_brewer(type = "qual",palette =  "Dark2")
-
+  scale_fill_brewer(type = "qual", palette = "Dark2")
 ```
 
 
@@ -61,33 +66,38 @@ ggplot(act_long, aes(x = Year, y = value, fill = Activity)) +
 \vspace{-0.75em}
 2020 - present, *Diversigen*, New Brighton, MN  
 
-- Author R package of data manipulation, visualization, and statisical functions routinely used by team members
-- Maintain R package on github, incorporating team member suggestions
-- Produce over 20 written reports containing statistical analyses and data visualization
+\small
+\vspace{-0.65em}
+- Collaborate with internal and external teams to understand goals, execute data analysis, return figures & statistical results
+- Create R package of visualization and statistical functions used by team members, incorporate feedback, maintain on github
+- Produce over 20 written reports containing statistical analyses & data visualization
+- Spearhead analysis of multi-faceted internal research project, present findings at national conference
 
-\vspace{-1.em}
+\vspace{-1.5em}
 ## \textcolor{BlueViolet}{Research Scientist}
 \vspace{-0.75em}
 2018 - 2020, *Elanco*, Greenfield, IN 
 
-- Perform statistical analyses and create data visualizations
-- Present findings to internal teams, customizing for audience backgrounds
+\vspace{-0.65em}
+- Performed quality control, exploratory & statistical analysis on research data, produced summary visualizations, wrote reports
+- Presented findings to internal teams & at external conferences, customizing information for audience backgrounds
 - Taught team members basic analytic and visualization methods
 
-\vspace{-1.em}
+\vspace{-1.5em}
 ## \textcolor{BlueViolet}{Business Owner}
 \vspace{-0.75em}
 2016 - 2018, *Wendy Phillips Photography*, Corvallis, OR
 
+\vspace{-0.65em}
 - Founded and managed self-owned photography business
 
-\vspace{-1.em}
+\vspace{-1.5em}
 ## \textcolor{BlueViolet}{Research Associate}
 \vspace{-0.75em}
 2013 - 2016, *U.S. Dept. of Agriculture*,  Corvallis, OR  
 
-- Statistical analysis
-- Another
+\vspace{-0.65em}
+- Managed five concurrent research projects, performed both research and data analytics, yielding five scientific publications
 
 :::
 ::: {.column width="5%" data-latex="{0.05\textwidth}"}
@@ -105,8 +115,8 @@ Golden Valley, MN
 \vspace{-0.75em}
 # LINKS
 \vspace{-0.5em}
-[LinkedIn](https://https://www.linkedin.com/in/wendyphillipsphd/)  
 [GitHub](https://github.com/wendysphillips)  
+[LinkedIn](https://https://www.linkedin.com/in/wendyphillipsphd/)  
 
 \vspace{-0.75em}
 # EDUCATION
@@ -127,36 +137,40 @@ DataCamp, 2023
 # DATA SKILLS
 
 ```{r fig-two-together,  message=FALSE, echo=FALSE, fig.align="center"}
-library(wordcloud) 
-comp_skills <- read.csv("/Users/wendyphillips/Documents/Computing/R_work/data/computing_skills.csv")
-pal <- rev(brewer.pal(8,"Dark2"))
+library(wordcloud)
+comp_skills <- read.csv("data/computing_skills.csv")
+pal <- brewer.pal(8, "Dark2")
 # pal <- pal[-(1)]
-set.seed(9999)
-wordcloud(comp_skills$word, comp_skills$freq, scale=c(4,.5),min.freq=2,max.words=Inf,random.order=TRUE, random.color=TRUE, rot.per=0, colors=pal)
+set.seed(997)
+# wp_cols <- c("#9d0079","#92c4ff",  "#ff64b9",  "#5677ff",  "#7c8900",  "#02b1f9",  "#fdb78b",  "#59488a")
+wordcloud(comp_skills$word, comp_skills$freq, scale = c(4, .5), min.freq = 2, max.words = Inf, random.order = TRUE, random.color = TRUE, rot.per = 0, colors = pal)
 ```
 
 
 # VALUE ADD
 ```{r, echo = FALSE, warning=FALSE, fig.height=1.3}
+# Create dataframe
+wendys_value <- data.frame(cat = c("apple now", "apple with wendy"), vals = c(10, 11))
 
-wendys_value <- data.frame(cat = c("apple now", "apple with wendy"), vals = c(10,11))
-wendys_value$cat <- factor(wendys_value$cat, levels =c("apple with wendy", "apple now"))
-ggplot(wendys_value, aes(x=vals, y = cat, group = cat)) +
-  geom_bar(stat='identity', width=0.75,aes(fill = cat)) +
+# Factor categories to control plotting order
+wendys_value$cat <- factor(wendys_value$cat, levels = c("apple with wendy", "apple now"))
+
+ggplot(wendys_value, aes(x = vals, y = cat, group = cat)) +
+  geom_bar(stat = "identity", width = 0.75, aes(fill = cat)) +
   theme_classic(base_size = 16) +
-  scale_x_continuous(limits = c(0,11), breaks = c(0,5,10), expand = c(0,0)) +
-  labs(y="", x = "Score") +
-  theme(legend.position = "none",
-        axis.text.y = element_text(color = "#3591aa", size = 14, face = "bold")) +
-  scale_fill_manual(values = c( "#D4AF37", "#C0C0C0")) +
-  theme(axis.ticks.y = element_blank())
-  
+  scale_x_continuous(limits = c(0, 11), breaks = c(0, 5, 10), expand = c(0, 0)) +
+  labs(y = "", x = "Score") +
+  theme(
+    legend.position = "none",
+    axis.text.y = element_text(
+      color = "#3591aa",
+      size = 14,
+      face = "bold"
+    ),
+    axis.ticks.y = element_blank()
+  ) +
+  scale_fill_manual(values = c("#D4AF37", "#C0C0C0"))
 ```
-
- 
-
-
 
 :::
 ::::::
-
